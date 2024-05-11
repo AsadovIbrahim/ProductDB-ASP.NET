@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Product_Store.Repositories.Abstracts;
+using Product_Store.Repositories.Concretes;
+using ProductDB.Contexts;
+
 namespace Product_Store
 {
     public class Program
@@ -6,16 +11,25 @@ namespace Product_Store
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ProductDbContext>(option =>
+            {
+                option.UseSqlServer(builder.Configuration.GetConnectionString("default"));
+            });
+
+
+            builder.Services.AddScoped<IProductRepository,ProductRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<IProductOrdersRepository, ProductOrderRepository>();
+
+
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -28,7 +42,7 @@ namespace Product_Store
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Admin}/{action=Dashboard}/{id?}");
 
             app.Run();
         }

@@ -128,3 +128,4 @@ C:\Users\ASUS\source\repos\Product-Store\ProductDB\obj\Debug\net8.0\refint\Produ
 C:\Users\ASUS\source\repos\Product-Store\ProductDB\obj\Debug\net8.0\ProductDB.pdb
 C:\Users\ASUS\source\repos\Product-Store\ProductDB\obj\Debug\net8.0\ProductDB.genruntimeconfig.cache
 C:\Users\ASUS\source\repos\Product-Store\ProductDB\obj\Debug\net8.0\ref\ProductDB.dll
+C:\Users\ASUS\source\repos\Product-Store\ProductDB\obj\Debug\net8.0\ProductDB.sourcelink.json
